@@ -1,12 +1,426 @@
-## Hi there 👋
+```mermaid
+erDiagram
+    User ||--o{ Answer : submits
+    User ||--o{ Quiz : takes
+    User ||--o{ Article : views
+    User ||--o{ Translation : performs
+    User ||--o{ Subscription : has
+    User ||--o{ Transaction : makes
+    Quiz ||--|{ Question : contains
+    Question ||--o{ Answer : has
+    Plan ||--o{ Subscription : offers
+    Subscription ||--o{ Transaction : generates
 
-<!--
+    User {
+        int user_id
+        string username
+        string fullname
+        string email
+        string password
+        string signup_method
+        datetime created_at
+    }
+    
+    Quiz {
+        int quiz_id
+        string title
+        string description
+        datetime created_at
+    }
+    
+    Question {
+        int question_id
+        int quiz_id
+        string content
+        string correct_answer
+    }
+    
+    Answer {
+        int answer_id
+        int question_id
+        int user_id
+        string user_answer
+        boolean is_correct
+        datetime submitted_at
+    }
+    
+    Article {
+        int article_id
+        string title
+        string content
+        datetime published_at
+    }
+    
+    Translation {
+        int translation_id
+        int user_id
+        string text_input
+        string text_output
+        string translation_type
+        datetime created_at
+        float confidence_score
+    }
 
-**Here are some ideas to get you started:**
+    Plan {
+        int plan_id
+        string name
+        decimal price
+        string billing_interval
+        int translation_limit
+        boolean has_premium_features
+        datetime created_at
+    }
 
-🙋‍♀️ A short introduction - what is your organization all about?
-🌈 Contribution guidelines - how can the community get involved?
-👩‍💻 Useful resources - where can the community find your docs? Is there anything else the community should know?
-🍿 Fun facts - what does your team eat for breakfast?
-🧙 Remember, you can do mighty things with the power of [Markdown](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
--->
+    Subscription {
+        int subscription_id
+        int user_id
+        int plan_id
+        datetime start_date
+        datetime end_date
+        string status
+        string payment_status
+        datetime created_at
+    }
+
+    Transaction {
+        int transaction_id
+        int user_id
+        int subscription_id
+        decimal amount
+        string currency
+        string payment_method
+        string status
+        string payment_intent_id
+        datetime created_at
+    }
+
+```
+
+```mermaid
+graph TB
+    subgraph "Development Environment"
+        ML[ML Engineer Workstation]
+    end
+
+    subgraph "Google Cloud Platform"
+        subgraph "Storage"
+            GCS[("Google Cloud Storage")]
+            subgraph "Buckets"
+                Dataset["Dataset Bucket"]
+                Model["Model Bucket<br/>(SavedModel format)"]
+            end
+        end
+
+        subgraph "Database"
+            SQL["Cloud SQL<br/>PostgreSQL"]
+            subgraph "Database Instances"
+                Primary["Primary Instance"]
+                Read["Read Replicas"]
+            end
+        end
+
+        subgraph "Serverless Services"
+            CR1["Cloud Run<br/>Auth Service"]
+            CR2["Cloud Run<br/>Translation API"]
+            CR3["Cloud Run<br/>Quiz Service"]
+            CR4["Cloud Run<br/>User Service"]
+        end
+
+        subgraph "Connection"
+            CP["Cloud SQL Proxy"]
+        end
+    end
+
+    subgraph "Client Applications"
+        Mobile["Mobile App"]
+    end
+
+    %% Development Flow
+    ML -->|"Upload Dataset<br/>via gsutil/API"| Dataset
+    ML -->|"Train & Upload<br/>Model"| Model
+    
+    %% Model Access
+    Model -->|"Serve model files<br/>via HTTPS"| CR2
+    Dataset -->|"Access during<br/>training"| ML
+
+    %% Database Connections
+    Primary -->|"Replication"| Read
+    CP -->|"Secure Connection"| Primary
+    CP -->|"Read Operations"| Read
+    
+    CR1 -->|"DB Operations"| CP
+    CR2 -->|"DB Operations"| CP
+    CR3 -->|"DB Operations"| CP
+    CR4 -->|"DB Operations"| CP
+
+    %% Service Communications
+    CR1 -->|"Token Validation"| CR2
+    CR1 -->|"Token Validation"| CR3
+    CR1 -->|"Token Validation"| CR4
+
+    %% Client Communications
+    
+    Mobile -->|"HTTPS API Calls"| CR1
+    Mobile -->|"HTTPS API Calls"| CR2
+    Mobile -->|"HTTPS API Calls"| CR3
+    Mobile -->|"HTTPS API Calls"| CR4
+
+    classDef gcpService fill:#4285f4,stroke:#1a73e8,color:white;
+    classDef storage fill:#fad2d2,stroke:#e06666;
+    classDef client fill:#fff,stroke:#333;
+    classDef bucket fill:#ffe6cc,stroke:#d79b00;
+    classDef database fill:#67AB9F,stroke:#008975,color:white;
+    classDef proxy fill:#ff9900,stroke:#ff6600,color:white;
+
+    class GCS,Dataset,Model storage;
+    class CR1,CR2,CR3,CR4 gcpService;
+    class Web,Mobile client;
+    class Dataset,Model bucket;
+    class SQL,Primary,Read database;
+    class CP proxy;
+```
+
+# API Documentation
+
+## Table of Contents
+- [Authentication](#authentication)
+- [Base URLs](#base-urls)
+- [Authentication Service](#authentication-service)
+- [User Service](#user-service)
+- [Translation Service](#translation-service)
+- [Quiz Service](#quiz-service)
+- [Error Handling](#error-handling)
+
+## Base URLs
+
+| Environment | Base URL                                    |
+|------------|---------------------------------------------|
+| Production | `https://api.<tba>`          |
+| Staging    | `https://staging-api.<tba>`  |
+| Development| `https://dev-api.<tba>`      |
+
+### Authentication Service
+
+1. Register New User
+```http
+POST /auth/register
+Authorization: Bearer <your_jwt_token>
+
+Request Body:
+{
+  "email": "string",
+  "password": "string",
+  "username": "string",
+  "fullName": "string"
+}
+
+Response (201 Created):
+{
+  "userId": "string",
+  "token": "string"
+}
+```
+
+2. Login
+```http
+POST /auth/login
+Authorization: Bearer <your_jwt_token>
+
+Request Body:
+{
+  "email": "string",
+  "password": "string"
+}
+
+Response (200 OK):
+{
+  "token": "string",
+}
+```
+3. Logout
+```http
+DELETE /auth/login
+Authorization: Bearer <your_jwt_token>
+
+Response (200 OK):
+{
+  "message": "string",
+}
+```
+
+### User Service
+
+1. Get User Profile
+```http
+GET /users/profile
+Authorization: Bearer <your_jwt_token>
+
+Response (200 OK):
+{
+  "userId": "string",
+  "username": "string",
+  "email": "string",
+  "fullName": "string",
+  "progress": {
+    "completedLessons": ["lesson ids"],
+  }
+}
+```
+
+### Translation Service (blum fix)
+
+1. Translate Text
+```http
+POST /translate
+Authorization: Bearer <your_jwt_token>
+
+Request Body:
+{
+  "text": "string",
+  "sourceLanguage": "string",
+  "targetLanguage": "string"
+}
+
+Response (200 OK):
+{
+  "translatedText": "string",
+  "confidence": "number",
+  "alternatives": [
+    {
+      "text": "string",
+      "confidence": "number"
+    }
+  ]
+}
+```
+
+2. Get Translation History
+```http
+GET /translate/history
+Authorization: Bearer <your_jwt_token>
+
+Query Parameters:
+- page (optional): Page number (default: 1)
+- limit (optional): Items per page (default: 10)
+
+Response (200 OK):
+{
+  "translations": [
+    {
+      "id": "string",
+      "originalText": "string",
+      "translatedText": "string",
+      "sourceLanguage": "string",
+      "targetLanguage": "string",
+      "timestamp": "string"
+    }
+  ],
+  "pagination": {
+    "currentPage": "number",
+    "totalPages": "number",
+    "totalItems": "number"
+  }
+}
+```
+
+### Quiz Service
+
+1. Create Quiz
+```http
+POST /quizzes
+Authorization: Bearer <your_jwt_token>
+
+Request Body:
+{
+  "topics": ["string"],
+  "questionCount": "number"
+}
+
+Response (201 Created):
+{
+  "quizId": "string",
+  "questions": [
+    {
+      "id": "string",
+      "text": "string",
+      "options": ["string"],
+      "correctOption": "number"
+    }
+  ]
+}
+```
+
+2. Submit Quiz Answer
+```http
+POST /quizzes/{quizId}/answers
+Authorization: Bearer <your_jwt_token>
+
+Request Body:
+{
+  "questionId": "string",
+  "selectedOption": "number"
+}
+
+Response (200 OK):
+{
+  "correct": "boolean",
+  "explanation": "string",
+  "score": "number"
+}
+```
+
+3. Get Quiz Results
+```http
+GET /quizzes/{quizId}/results
+Authorization: Bearer <your_jwt_token>
+
+Response (200 OK):
+{
+  "quizId": "string",
+  "score": "number",
+  "totalQuestions": "number",
+  "correctAnswers": "number",
+  "completedAt": "string",
+  "questions": [
+    {
+      "id": "string",
+      "text": "string",
+      "userAnswer": "number",
+      "correctAnswer": "number",
+      "correct": "boolean"
+    }
+  ]
+}
+```
+
+### Error Handling
+```http
+Error Response Format:
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "details": "object (optional)"
+  }
+}
+
+Common Error Codes:
+400 - Bad Request - Invalid input parameters
+401 - Unauthorized - Authentication required
+403 - Forbidden - Insufficient permissions
+404 - Not Found - Resource doesn't exist
+429 - Too Many Requests - Rate limit exceeded
+500 - Internal Server Error
+```
+
+### Rate Limiting
+```http
+Rate limits:
+- 100 requests per minute for authenticated users
+- 20 requests per minute for unauthenticated users
+
+Rate limit headers:
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 95
+X-RateLimit-Reset: 1628789000
+```
