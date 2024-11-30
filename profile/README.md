@@ -193,30 +193,27 @@ graph TB
 
 ## Base URLs
 
-| Environment | Base URL                                    |
+| Services | Base URL                                    |
 |------------|---------------------------------------------|
-| Production | `https://api.<tba>`          |
-| Staging    | `https://staging-api.<tba>`  |
-| Development| `https://dev-api.<tba>`      |
+| Authentication | `https://signmaster-auth-304278585381.asia-southeast2.run.app`          |
 
 ### Authentication Service
 
 1. Register New User
 ```http
 POST /auth/register
-Authorization: Bearer <your_jwt_token>
 
 Request Body:
 {
+  "username": "string",
   "email": "string",
   "password": "string",
-  "username": "string",
-  "fullName": "string"
+  "confirmPassword": "string",
 }
 
 Response (201 Created):
 {
-  "userId": "string",
+  "massage": "string",
   "token": "string"
 }
 ```
@@ -224,7 +221,6 @@ Response (201 Created):
 2. Login
 ```http
 POST /auth/login
-Authorization: Bearer <your_jwt_token>
 
 Request Body:
 {
@@ -234,12 +230,13 @@ Request Body:
 
 Response (200 OK):
 {
+  "massage": "string",
   "token": "string",
 }
 ```
-3. Logout
+3. Test restriction
 ```http
-DELETE /auth/login
+DELETE /auth/restriction
 Authorization: Bearer <your_jwt_token>
 
 Response (200 OK):
