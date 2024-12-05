@@ -97,7 +97,7 @@ erDiagram
 ```
 
 ```mermaid
-graph TB
+graph RL
     subgraph "Development Environment"
         ML[ML Engineer Workstation]
     end
@@ -112,22 +112,16 @@ graph TB
         end
 
         subgraph "Database"
-            SQL["Cloud SQL<br/>PostgreSQL"]
-            subgraph "Database Instances"
-                Primary["Primary Instance"]
-                Read["Read Replicas"]
-            end
+            SQL["PostgreSQL"]
         end
 
-        subgraph "Serverless Services"
+        subgraph "Services"
             CR1["Cloud Run<br/>Auth Service"]
             CR2["Cloud Run<br/>Translation API"]
             CR3["Cloud Run<br/>Quiz Service"]
             CR4["Cloud Run<br/>User Service"]
-        end
-
-        subgraph "Connection"
-            CP["Cloud SQL Proxy"]
+            CR5["Cloud Run<br/>Material Service"]
+            CR6["Cloud Run<br/>Text to Motion Service"]
         end
     end
 
@@ -139,45 +133,48 @@ graph TB
     ML -->|"Upload Dataset<br/>via gsutil/API"| Dataset
     ML -->|"Train & Upload<br/>Model"| Model
     
-    %% Model Access
+    %% Model & Dataset Access
     Model -->|"Serve model files<br/>via HTTPS"| CR2
     Dataset -->|"Access during<br/>training"| ML
+    Dataset -->|"Access quiz data"| CR3
+    Dataset -->|"Access material data"| CR5
+    Dataset -->|"Access motion data"| CR6
 
     %% Database Connections
-    Primary -->|"Replication"| Read
-    CP -->|"Secure Connection"| Primary
-    CP -->|"Read Operations"| Read
-    
-    CR1 -->|"DB Operations"| CP
-    CR2 -->|"DB Operations"| CP
-    CR3 -->|"DB Operations"| CP
-    CR4 -->|"DB Operations"| CP
+    CR1 -->|"DB Operations"| SQL
+    CR2 -->|"DB Operations"| SQL
+    CR3 -->|"DB Operations"| SQL
+    CR4 -->|"DB Operations"| SQL
+    CR5 -->|"DB Operations"| SQL
+    CR6 -->|"DB Operations"| SQL
 
     %% Service Communications
     CR1 -->|"Token Validation"| CR2
     CR1 -->|"Token Validation"| CR3
     CR1 -->|"Token Validation"| CR4
+    CR1 -->|"Token Validation"| CR5
+    CR1 -->|"Token Validation"| CR6
 
     %% Client Communications
-    
     Mobile -->|"HTTPS API Calls"| CR1
     Mobile -->|"HTTPS API Calls"| CR2
     Mobile -->|"HTTPS API Calls"| CR3
     Mobile -->|"HTTPS API Calls"| CR4
+    Mobile -->|"HTTPS API Calls"| CR5
+    Mobile -->|"HTTPS API Calls"| CR6
 
     classDef gcpService fill:#4285f4,stroke:#1a73e8,color:white;
     classDef storage fill:#fad2d2,stroke:#e06666;
     classDef client fill:#fff,stroke:#333;
     classDef bucket fill:#ffe6cc,stroke:#d79b00;
     classDef database fill:#67AB9F,stroke:#008975,color:white;
-    classDef proxy fill:#ff9900,stroke:#ff6600,color:white;
 
     class GCS,Dataset,Model storage;
-    class CR1,CR2,CR3,CR4 gcpService;
+    class CR1,CR2,CR3,CR4,CR5,CR6 gcpService;
     class Web,Mobile client;
     class Dataset,Model bucket;
-    class SQL,Primary,Read database;
-    class CP proxy;
+    class SQL database;
+
 ```
 
 # API Documentation
