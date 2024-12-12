@@ -28,13 +28,10 @@ graph LR
     end
 
     subgraph "Google Cloud Platform"
-        subgraph "Storage"
-            GCS[("Google Cloud Storage")]
-            subgraph "Buckets"
+        subgraph "Storage Buckets"
                 Dataset[bucket-asl-data]
                 Model[bucket-tomotion]
                 ImageBucket[bucket-news-image]
-            end
         end
 
         subgraph "Database"
