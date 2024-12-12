@@ -8,15 +8,15 @@ The app also caters to two additional groups: individuals learning sign language
 ## Team Member C242-PS363
 <div align="center">
 
-| Bangkit ID | Name | Learning Path | Status |
-|:----------:|------|:------------:|:-------|
-| M008B4KY2566 | Mohammad Fajar Maulid | Machine Learning | Active |
-| M008B4KY2883 | Muhammad Hariish Hafiiz | Machine Learning | Active |
-| M008B4KY4525 | Yazid Rizki Kurniawan | Machine Learning | Active |
-| C008B4KY1542 | Fitriansyah Eka Putra | Cloud Computing | Active |
-| C008B4KY3671 | Rakyan Pangrukti Wibana | Cloud Computing | Active |
-| A529B4KY0766 | Aziz Nur Ashidiq | Mobile Development | Active |
-| A529B4KY2683 | Muhammad Adira Zaidan Putra Pratama | Mobile Development | Active |
+| Bangkit ID | Name | Learning Path | Status | LinkedIn |
+|:----------:|------|:------------:|:-------|--------|
+| M008B4KY2566 | Mohammad Fajar Maulid | Machine Learning | Active | [LinkedIn]() |
+| M008B4KY2883 | Muhammad Hariish Hafiiz | Machine Learning | Active | [LinkedIn]() |
+| M008B4KY4525 | Yazid Rizki Kurniawan | Machine Learning | Active | [LinkedIn]() |
+| C008B4KY1542 | Fitriansyah Eka Putra | Cloud Computing | Active | [LinkedIn]() |
+| C008B4KY3671 | Rakyan Pangrukti Wibana | Cloud Computing | Active | [LinkedIn]() |
+| A529B4KY0766 | Aziz Nur Ashidiq | Mobile Development | Active | [LinkedIn]() |
+| A529B4KY2683 | Muhammad Adira Zaidan Putra Pratama | Mobile Development | Active | [LinkedIn]() |
 
 </div>
 
