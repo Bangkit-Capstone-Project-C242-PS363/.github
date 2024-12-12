@@ -111,3 +111,5 @@ graph LR
 
 ## Mobile Development
 [Mobile App](https://github.com/Bangkit-Capstone-Project-C242-PS363/bismillah.git)
+
+[UI/UX Design](https://www.figma.com/design/CHL6bVhMl2UWoUDLtU8Biz/UI-Bisu-Language)
