@@ -24,6 +24,7 @@ graph LR
             CR3["Cloud Run<br/>Material and Quiz Service"]
             CR6["Cloud Run<br/>Text to Motion Service"]
             CR7["Cloud Run<br/>News Service"]
+            CR8["Cloud Run<br/>Certificate Generator"]
         end
     end
 
@@ -39,6 +40,7 @@ graph LR
     Dataset -->|"Access motion data"| CR6
     ImageBucket -->|"Access news image"| CR7
     CR6 -->|"Store Generated motion"| Dataset
+    CR8 --> |"Store Generated Certificates"| Model
 
     %% Database Connections
     CR1 -->|"DB Operations"| SQL
@@ -55,6 +57,7 @@ graph LR
     Mobile -->|"HTTPS API Calls"| CR3
     Mobile -->|"HTTPS API Calls"| CR6
     Mobile -->|"HTTPS API Calls"| CR7
+    CR3 -->|"Generates Certificate"| CR8
 
     classDef gcpService fill:#4285f4,stroke:#1a73e8,color:white;
     classDef storage fill:#fad2d2,stroke:#e06666;
@@ -64,7 +67,7 @@ graph LR
 
     class GCS storage;
     class Dataset,Model,ImageBucket,NewsBucket bucket;
-    class CR1,CR2,CR3,CR6,CR7 gcpService;
+    class CR1,CR2,CR3,CR6,CR7,CR8 gcpService;
     class Mobile client;
     class SQL database;
 ```
