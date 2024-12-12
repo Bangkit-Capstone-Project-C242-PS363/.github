@@ -1,3 +1,7 @@
+#Sign Master
+##About this project
+##Team Member C242-PS363
+##Project Architecture 
 ```mermaid
 graph LR
     subgraph "Development Environment"
