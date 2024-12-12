@@ -95,10 +95,10 @@ graph LR
     class SQL database;
 ```
 
-## Mobile 
+## Machine Learning
 TODO
 
-## Cloud Computing Projects
+## Cloud Computing
 [Inference Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-toMotion.git)
 
 [Auth Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-auth.git)
@@ -110,5 +110,5 @@ TODO
 [News Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-news)
 
 
-## ML
+## Mobile Development
 TODO
