@@ -73,3 +73,6 @@ graph LR
     class Mobile client;
     class SQL database;
 ```
+
+
+[Inference API](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-toMotion.git)
