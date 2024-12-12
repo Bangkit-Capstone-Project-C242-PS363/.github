@@ -9,7 +9,7 @@ The app also caters to two additional groups: individuals learning sign language
 <div align="center">
 
 | Bangkit ID | Name | Learning Path | LinkedIn Profile | Status |
-|:----------:|------|:------------:|:-------|------------------|
+|:----------:|------|:------------:|:-------:|------------------|
 | M008B4KY2566 | Mohammad Fajar Maulid | Machine Learning | [LinkedIn](https://www.linkedin.com/in/fajar-maulid-2665b81b1/) | Active |
 | M008B4KY2883 | Muhammad Hariish Hafiiz | Machine Learning | [LinkedIn](https://www.linkedin.com/in/muhammad-hariish-hafiiz-84b15b2a5/) | Active |
 | M008B4KY4525 | Yazid Rizki Kurniawan | Machine Learning | [LinkedIn](https://www.linkedin.com/in/yazid-rizki-kurniawan-521237154/) | Active |
