@@ -68,10 +68,20 @@ graph LR
     class Mobile client;
     class SQL database;
 ```
+## Mobile 
+TODO
 
-
+## Cloud Computing Projects
 [Inference Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-toMotion.git)
+
 [Auth Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-auth.git)
+
 [Material and Quiz Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-material-quiz)
+
 [Text to Motion Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-toMotion.git)
+
 [News Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-news)
+
+
+## ML
+TODO
