@@ -1,3 +1,26 @@
+## Sign Master
+
+## About This Project
+Sign Master is an innovative application designed to support the deaf and mute community, their families, and close connections. It addresses key challenges such as the limited resources and limited communication opportunities. By leveraging AI-powered tools for gesture recognition and interactive learning modules, Sign Master enables smooth conversations between deaf individuals and their loved ones, fostering stronger bonds and breaking communication barriers. This ensures the community feels empowered, supported, and included.
+
+The app also caters to two additional groups: individuals learning sign language for personal growth and professionals such as educators or customer service representatives who need it for their careers. With structured modules, gamified quizzes, and certifications, Sign Master makes the learning process engaging and effective. By bridging communication gaps and promoting inclusivity, the app helps foster societal understanding and respect for the deaf community.
+
+## Team Member C242-PS363
+<div align="center">
+
+| Bangkit ID | Name | Learning Path | Status |
+|:----------:|------|:------------:|:-------|
+| M008B4KY2566 | Mohammad Fajar Maulid | Machine Learning | Active |
+| M008B4KY2883 | Muhammad Hariish Hafiiz | Machine Learning | Active |
+| M008B4KY4525 | Yazid Rizki Kurniawan | Machine Learning | Active |
+| C008B4KY1542 | Fitriansyah Eka Putra | Cloud Computing | Active |
+| C008B4KY3671 | Rakyan Pangrukti Wibana | Cloud Computing | Active |
+| A529B4KY0766 | Aziz Nur Ashidiq | Mobile Development | Active |
+| A529B4KY2683 | Muhammad Adira Zaidan Putra Pratama | Mobile Development | Active |
+
+</div>
+
+ ## Project Architecture 
 ```mermaid
 graph LR
     subgraph "Development Environment"
@@ -71,6 +94,7 @@ graph LR
     class Mobile client;
     class SQL database;
 ```
+
 ## Mobile 
 TODO
 
