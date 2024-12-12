@@ -95,6 +95,8 @@ graph LR
 ## Machine Learning
 [Alphanumeric Training](https://github.com/Bangkit-Capstone-Project-C242-PS363/ML-Alphanumeric.git)
 
+[Inference Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-toMotion.git)
+
 ## Cloud Computing
 [Inference Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-toMotion.git)
 
