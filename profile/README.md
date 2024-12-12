@@ -93,7 +93,7 @@ graph LR
 ```
 
 ## Machine Learning
-TODO
+[Alphanumeric Training](https://github.com/Bangkit-Capstone-Project-C242-PS363/ML-Alphanumeric.git)
 
 ## Cloud Computing
 [Inference Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-toMotion.git)
