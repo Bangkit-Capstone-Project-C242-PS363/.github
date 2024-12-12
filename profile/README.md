@@ -60,7 +60,7 @@ graph LR
     Dataset -->|"Access motion data"| CR6
     ImageBucket -->|"Access news image"| CR7
     CR6 -->|"Store Generated motion"| Dataset
-    Model --> |"Store Generated Certificates"| CR8
+    CR8 --> |"Store Generated Certificates"| Model
 
     %% Database Connections
     CR1 -->|"DB Operations"| SQL
