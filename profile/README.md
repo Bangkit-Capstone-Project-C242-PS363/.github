@@ -104,7 +104,7 @@ graph LR
 
 [Material and Quiz Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-material-quiz)
 
-[Text to Motion Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-toMotion.git)
+[Text to Sign Language Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-toMotion.git)
 
 [News Service](https://github.com/Bangkit-Capstone-Project-C242-PS363/service-news)
 
