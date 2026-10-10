@@ -13,7 +13,7 @@ The app also caters to two additional groups: individuals learning sign language
 | M008B4KY2566 | Mohammad Fajar Maulid | Machine Learning | [LinkedIn](https://www.linkedin.com/in/fajar-maulid-2665b81b1/) | Active |
 | M008B4KY2883 | Muhammad Hariish Hafiiz | Machine Learning | [LinkedIn](https://www.linkedin.com/in/muhammad-hariish-hafiiz-84b15b2a5/) | Active |
 | M008B4KY4525 | Yazid Rizki Kurniawan | Machine Learning | [LinkedIn](https://www.linkedin.com/in/yazid-rizki-kurniawan-521237154/) | Active |
-| C008B4KY1542 | Fitriansyah Eka Putra | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/fitriansyah-eka-putra-417049199/) | Active |
+| C008B4KY1542 | Fitriansyah Eka Putra | Cloud Computing | [LinkedIn](linkedin.com/in/fitrafep//) | Active |
 | C008B4KY3671 | Rakyan Pangrukti Wibana | Cloud Computing | [LinkedIn](https://www.linkedin.com/in/rakyanwibana/) | Active |
 | A529B4KY0766 | Aziz Nur Ashidiq | Mobile Development | [LinkedIn](https://www.linkedin.com/in/aziz-nur-ashidiq-466b39218/) | Active |
 | A529B4KY2683 | Muhammad Adira Zaidan Putra Pratama | Mobile Development | [LinkedIn](https://www.linkedin.com/in/adira-zaidan-b457082b5/) | Active |
